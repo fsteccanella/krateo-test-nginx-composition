@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "krateo-test-nginx-composition.labels" . | nindent 4 }}
 spec:
+  enableUpdate: true
+  override: true
   configMapKeyRef:
     namespace: {{ .Release.Namespace }}
     name: {{ .Release.Name }}-replace-values
