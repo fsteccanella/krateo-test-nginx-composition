@@ -7,5 +7,5 @@ metadata:
 data:
   values: |
     { 
-      "websiteTitle": "{{ .Values.website.title }}",
+      "websiteTitle": "{{ .Values.website.title }}"
     }
