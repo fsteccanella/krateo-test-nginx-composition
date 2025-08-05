@@ -13,6 +13,11 @@ spec:
     url: https://github.com/fsteccanella/krateo-test-nginx-helm-template
     branch: main
     path: /
+    authMethod: generic
+    secretRef:
+      namespace: krateo-system
+      name: krateo-test-gitops-repo-credentials
+      key: token
   toRepo:
     url: https://github.com/fsteccanella/krateo-test-gitops-repo
     branch: main
