@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}
+  namespace: "argocd"
+  labels:
+    {{- include "krateo-test-nginx-composition.labels" . | nindent 4 }}
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/fsteccanella/krateo-test-gitops-repo
+    targetRevision: main
+    path: /{{ .Values.website.path | kebabcase}}/{{ .Values.website.title | kebabcase}}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{  printf "%s-%s" .Values.website.path .Values.website.title | kebabcase | trunc 63 | trimSuffix "-" }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,24 @@
+apiVersion: git.krateo.io/v1alpha1
+kind: Repo
+metadata:
+  name: {{ .Release.Name }}-repo
+  labels:
+    {{- include "krateo-test-nginx-composition.labels" . | nindent 4 }}
+spec:
+  configMapKeyRef:
+    namespace: {{ .Release.Namespace }}
+    name: {{ .Release.Name }}-replace-values
+    key: values
+  fromRepo:
+    url: https://github.com/fsteccanella/krateo-test-nginx-helm-template
+    branch: main
+    path: /
+  toRepo:
+    url: https://github.com/fsteccanella/krateo-test-gitops-repo
+    branch: main
+    path: /{{ .Values.website.path | kebabcase}}/{{ .Values.website.title | kebabcase}}
+    authMethod: generic
+    secretRef:
+      namespace: krateo-system
+      name: krateo-test-gitops-repo-credentials
+      key: token
