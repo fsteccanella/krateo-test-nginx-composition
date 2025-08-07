@@ -1,3 +1,5 @@
+cluster: dummy
+app: krateo-test-nginx
 website:
   title: NGINX
   path: krateo-test-nginx-helm

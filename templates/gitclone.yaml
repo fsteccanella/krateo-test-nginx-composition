@@ -22,7 +22,7 @@ spec:
   toRepo:
     url: https://github.com/fsteccanella/krateo-test-gitops-repo
     branch: main
-    path: /{{ .Values.website.path | kebabcase}}/{{ .Values.website.title | kebabcase}}
+    path: /
     authMethod: generic
     secretRef:
       namespace: krateo-system

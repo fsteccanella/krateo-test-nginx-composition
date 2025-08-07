@@ -2,22 +2,22 @@
   "type": "object",
   "$schema": "http://json-schema.org/draft-07/schema",
   "required": [
+    "cluster",
     "website"
   ],
   "properties": {
+    "cluster": {
+      "type": "string",
+      "description": "destination cluster",
+      "default": "dummy"
+    },
     "website": {
       "type": "object",
       "description": "Website parameters section",
       "required": [
-        "path",
         "title"
       ],
       "properties": {
-        "path": {
-          "type": "string",
-          "description": "Path to the website",
-          "default": "/krateo-test-nginx-helm"
-        },
         "title": {
           "type": "string",
           "description": "Title of the website",
