@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/fsteccanella/krateo-test-gitops-repo
     targetRevision: main
-    path: {{  printf "%s/%s" .Values.website.path .Values.website.title | kebabcase }}
+    path: {{  printf "%s/%s" .Values.cluster .Values.app | kebabcase }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{  printf "%s-%s" .Values.website.path .Values.website.title | kebabcase | trunc 63 | trimSuffix "-" }}
+    namespace: {{  printf "%s-%s" .Values.cluster .Values.app | kebabcase | trunc 63 | trimSuffix "-" }}
   syncPolicy:
     automated:
       prune: true
